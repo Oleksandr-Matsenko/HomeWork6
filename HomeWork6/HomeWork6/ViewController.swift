@@ -212,7 +212,7 @@ class ViewController: UIViewController {
             bottomStackButtons.topAnchor.constraint(lessThanOrEqualTo: buyOnCreditView.bottomAnchor,constant: 10),
             bottomStackButtons.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.43),
             bottomStackButtons.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            bottomStackButtons.leadingAnchor.constraint(equalTo: buyOnCreditView.leadingAnchor, constant: 0),
+            bottomStackButtons.leadingAnchor.constraint(equalTo: buyOnCreditView.leadingAnchor, constant: -5),
             
             buyNowButton.centerYAnchor.constraint(equalTo: bottomStackButtons.centerYAnchor),
             buyNowButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10),
