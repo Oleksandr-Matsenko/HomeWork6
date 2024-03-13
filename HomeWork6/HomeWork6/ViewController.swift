@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //MARK: Views
+    
     private let imageView = UIImageView()
     private let middleStackView = UIStackView()
     private let productInfostack = UIStackView()
@@ -17,6 +19,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .white
         setUpHeadView()
         setUpMiddleView()
@@ -25,6 +28,7 @@ class ViewController: UIViewController {
         setUpBottomStackButtons()
     }
     
+    //MARK: SetUp Head View
     
     private func setUpHeadView(){
         imageView.image = UIImage(named: "Asus")
@@ -40,6 +44,8 @@ class ViewController: UIViewController {
         ])
         
     }
+    
+    //MARK: SetUp Middle View
     
     private func setUpMiddleView(){
         //Create stackView and config it
@@ -64,7 +70,8 @@ class ViewController: UIViewController {
         codeOfProduct.textColor = UIColor.systemGray
         codeOfProduct.sizeToFit()
         
-        //Add to stack and of mask
+        //Config UI elements
+        
         [descriptionLabelProduct,codeOfProduct].forEach{
             $0.translatesAutoresizingMaskIntoConstraints = false
             middleStackView.addArrangedSubview($0)}
@@ -77,8 +84,8 @@ class ViewController: UIViewController {
         ratingLabel.translatesAutoresizingMaskIntoConstraints = false
         middleStackView.addSubview(ratingLabel)
         
-        
         //Constraints to stackView
+        
         NSLayoutConstraint.activate([
             middleStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
             middleStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
@@ -91,9 +98,12 @@ class ViewController: UIViewController {
         
     }
     
-    private func  setUpProductInfostack(){
+    //MARK: SetUp ProductInfoStackView
+    
+    private func  setUpProductInfostack() {
         
         //Create productInfoStack
+        
         productInfostack.axis = .vertical
         productInfostack.spacing = 15
         productInfostack.alignment = .leading
@@ -102,6 +112,7 @@ class ViewController: UIViewController {
         productInfostack.translatesAutoresizingMaskIntoConstraints = false
         
         //Create all Labels what we need
+        
         let priceLabel = UILabel()
         let currency = "8703 ₴"
         priceLabel.text = currency
@@ -134,6 +145,7 @@ class ViewController: UIViewController {
         }
         
         //Constraints to ProductStack
+        
         NSLayoutConstraint.activate([
             productInfostack.topAnchor.constraint(equalTo: middleStackView.bottomAnchor, constant: 10),
             productInfostack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
@@ -159,8 +171,9 @@ class ViewController: UIViewController {
         buyOnCreditView.addSubview(creditButton)
         
         //Constraints to creditButton and Stack
+        
         NSLayoutConstraint.activate([
-            buyOnCreditView.topAnchor.constraint(lessThanOrEqualTo: productInfostack.bottomAnchor, constant: 15),
+            buyOnCreditView.topAnchor.constraint(lessThanOrEqualTo: productInfostack.bottomAnchor, constant: 10),
             buyOnCreditView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             buyOnCreditView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             buyOnCreditView.heightAnchor.constraint(lessThanOrEqualToConstant: 60),
@@ -172,8 +185,13 @@ class ViewController: UIViewController {
         ])
         
     }
+    
+    //MARK: SetUp BottomStack View
+    
     private func setUpBottomStackButtons(){
+        
         //Bottom Stack Buttons
+        
         bottomStackButtons.backgroundColor = .white
         bottomStackButtons.axis = .horizontal
         bottomStackButtons.spacing = 2
@@ -221,7 +239,11 @@ class ViewController: UIViewController {
             
         ])
     }
+    
+    //MARK: Actions for buttons
+    
     //Action for buyOnCredit button
+    
     @objc private func takeCreditAction(){
         let alertVC = UIAlertController(title: "Розстрочка від \nПРИВАТБАНК", message: "Бажаєте отримати більш детальну інформацію?", preferredStyle: .actionSheet)
         let yesAction = UIAlertAction(title: "Так", style: .destructive)
@@ -230,7 +252,9 @@ class ViewController: UIViewController {
         alertVC.addAction(yesAction)
         present(alertVC, animated: true)
     }
+    
     //Action for Saved items button
+    
     @objc private func showSavedItems(){
         let alertVC = UIAlertController(title: nil, message: "Ваш список пустий..", preferredStyle: .alert)
         present(alertVC, animated: true)
@@ -238,7 +262,9 @@ class ViewController: UIViewController {
             alertVC.dismiss(animated: true)
         }
     }
+    
     //Action for Card button
+    
     @objc private func addToCard(){
         let alertVC = UIAlertController(title: "Товар додано до кошика", message: nil, preferredStyle: .actionSheet)
         present(alertVC, animated: true)
